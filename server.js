@@ -6,11 +6,11 @@ const { client } = require('./index.js');
 
 // Web server to keep bot running and to check its status
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env['PORT'] || 3000;
 
 app.get('/', (req, res) => {
-	if (!client.isReady) {
-		client.login(process.env.DISCORD_TOKEN);
+	if (!client.isReady()) {
+		client.login(process.env['DISCORD_TOKEN']);
 	}
 	res.status(200).send('Client is ready');
 });
