@@ -15,7 +15,7 @@ for (const file of commandFiles) {
 }
 
 // Construct and prepare an instance of the REST module
-const rest = new REST({ version: '10' }).setToken(process.env.DISCORD_TOKEN);
+const rest = new REST({ version: '10' }).setToken(process.env['DISCORD_TOKEN']);
 
 // Update guild slash commands to the `commands` set.
 (async () => {
@@ -23,8 +23,8 @@ const rest = new REST({ version: '10' }).setToken(process.env.DISCORD_TOKEN);
 		console.log(`Started refreshing ${commands.length} application (/) commands.`);
 
 		const data = await rest.put(
-			Routes.applicationGuildCommands(process.env.CLIENT_ID,
-				process.env.TEST_GUILD_ID),
+			Routes.applicationGuildCommands(process.env['CLIENT_ID'],
+				process.env['TEST_GUILD_ID']),
 			{ body: commands },
 		);
 
